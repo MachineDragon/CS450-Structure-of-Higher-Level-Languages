@@ -1,0 +1,123 @@
+#lang errortrace racket
+#|
+    ===> PLEASE DO NOT DISTRIBUTE THE SOLUTIONS PUBLICLY <===
+
+   We ask that solutions be distributed only locally -- on paper, on a
+   password-protected webpage, etc.
+
+   Students are required to adhere to the University Policy on Academic
+   Standards and Cheating, to the University Statement on Plagiarism and the
+   Documentation of Written Work, and to the Code of Student Conduct as
+   delineated in the catalog of Undergraduate Programs. The Code is available
+   online at:
+
+   https://www.umb.edu/life_on_campus/dean_of_students/student_conduct
+
+|#
+(require racket/set)
+(require "hw6-util.rkt")
+(provide frame-refs mem-mark mem-sweep mlist mapply)
+
+;;;;;;;;;;;;;;;
+;; Exercise 1
+
+(define/contract (frame-refs frm)
+  (-> frame? set?)
+  
+  (define (v1 v2 v3 v4)
+    (cond [(d:number? v3) v4]
+          [(d:void? v3) '()]
+          [(d:closure? v3)(set-add  v4 (d:closure-env v3))]
+          [else v4]))
+
+
+  (define handle (and(equal? (boolean? 'true) (frame-parent frm))))
+ 
+ (define lst-localfrm-handle (frame-fold v1 (set) frm))
+  (cond [(equal? #f (frame-parent frm))  lst-localfrm-handle]
+        [else (set-add  lst-localfrm-handle (frame-parent frm))]))
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;
+;; Exercise 2
+
+(define/contract (mem-mark contained mem env)
+  (-> (-> any/c set?) heap? handle? set?) 'todo)
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;
+;; Exercise 3
+
+(define/contract (mem-sweep mem to-keep)
+  (-> heap? set? heap?)'todo)
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;
+;; Exercise 4
+
+(define (mlist bind pure args)
+  'todo)
+
+;;;;;;;;;;;;;;;
+;; Exercise 5
+
+(define (mapply bind pure f . args)
+  'todo)
+
+;;;;;;;;;;;;;;;
+;; Exercise 6 (MANUALLY GRADED)
+#|
+Overflowing the reference count and setting it back to 0 will affect its soundness
+, reseting back to 0 may cause a lot of problems in memory management due
+to the loss of data that may have been allocated to a specific part that has
+now cleared up and will affect its completeness.
+|#

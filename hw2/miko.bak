@@ -1,0 +1,73 @@
+#lang racket
+
+
+
+
+
+(map (lambda(i) (string-append i "!")) (list "miko" "slau"))
+
+(map sqrt(list 1 2 4 9 16 36))
+
+
+(filter string? (list "miko" 3 "flay" 7))
+
+(filter positive? (list -1 2 -3 4))
+
+
+(first (list 1 2 3 4))
+(rest (list 3 4 5 6))
+
+(cons 3 4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(define (remove-dups l)
+  (cond
+   [(empty? l) empty]
+   [(empty? (rest l)) l]
+   [else
+    (let ([i (first l)])
+      (if (equal? i (first (rest l)))
+          (remove-dups (rest l))
+          (cons i (remove-dups (rest l)))))]))
+
+(remove-dups (list "a" "b" "b" "b" "c" "c"))
+
+
+(cons "banana" "split")
+
+
+(pair? (cons 1 2))
+
+(cons 1 (list 2 3))
+
+
+
+
+
+
+
+ 
+(define f(lambda (x) (let ([y 5]) (+ x y))))
+(f 10)
+
+(define miko(lambda(i) (let ([y 7]) (+ y i))))
+(miko 5)
+
+
+
